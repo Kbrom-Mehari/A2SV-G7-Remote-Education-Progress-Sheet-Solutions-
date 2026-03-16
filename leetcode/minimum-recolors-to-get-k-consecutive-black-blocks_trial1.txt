@@ -1,0 +1,18 @@
+class Solution:
+    def minimumRecolors(self, blocks: str, k: int) -> int:
+        min_recolor = 0
+        w_blocks = 0
+        for i in range(k):
+            if blocks[i] == 'W':
+                w_blocks += 1
+        min_recolor = w_blocks
+        for i in range(k, len(blocks)):
+            if blocks[i-k] == 'W':
+                w_blocks -= 1
+            if blocks[i] == 'W':
+                w_blocks += 1
+            min_recolor = min(min_recolor, w_blocks)
+        return min_recolor
+            
+
+        
