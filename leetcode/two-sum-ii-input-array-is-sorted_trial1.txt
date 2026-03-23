@@ -1,0 +1,13 @@
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        smallest = 0
+        largest = len(numbers) - 1 
+        while smallest != largest:
+            if numbers[smallest] + numbers[largest] == target:
+                break
+            elif numbers[smallest] + numbers[largest] > target:
+                largest -= 1
+            else:
+                smallest += 1
+        return [smallest + 1, largest + 1]
+        
