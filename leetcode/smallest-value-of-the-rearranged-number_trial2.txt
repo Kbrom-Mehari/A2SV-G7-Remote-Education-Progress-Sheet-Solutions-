@@ -1,0 +1,33 @@
+class Solution:
+    def smallestNumber(self, num: int) -> int:
+        digits = []
+        num_str = str(num)
+        
+        if num < 0:
+            for i in range(1, len(num_str)):
+                digits.append(int(num_str[i]))
+            digits.sort(reverse = True)
+            digit_str = []
+            for digit in digits:
+                digit_str.append(str(digit))
+            ans = ''.join(digit_str)
+            return -1 * int(ans)
+
+        else:
+            for i in range(len(num_str)):
+                digits.append(int(num_str[i]))
+            digits.sort()
+            if digits[0] == 0:
+                for i in range(1, len(digits)):
+                    if digits[i] != 0:
+                        digits[0], digits[i] = digits[i], digits[0]
+                        break
+                
+            digit_str2 = []
+            for digit in digits:
+                digit_str2.append(str(digit))
+            ans = ''.join(digit_str2)
+            return int(ans)
+            
+
+        
