@@ -1,0 +1,25 @@
+class Solution:
+    def shiftingLetters(self, s: str, shifts: List[List[int]]) -> str:
+        result = []
+        n = len(s)
+        diff = [0] * (n + 1)
+
+        for l, r, d in shifts:
+            val = 1 if d == 1 else -1
+            diff[l] += val
+            if r < n:
+                diff[r + 1] -= val
+        for i in range(1, n):
+            diff[i] += diff[i - 1]
+
+        for i in range(n):
+            shift = diff[i] % 26
+            newChar = chr(  (ord(s[i]) - ord('a') + shift) % 26 + ord('a') )
+            result.append(newChar)
+        
+        return ''.join(result)
+
+
+        
+
+        
