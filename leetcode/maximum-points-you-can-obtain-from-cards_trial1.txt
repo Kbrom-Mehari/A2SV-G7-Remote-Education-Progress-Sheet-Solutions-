@@ -1,0 +1,23 @@
+class Solution:
+    def maxScore(self, cardPoints: List[int], k: int) -> int:
+        n = len(cardPoints)
+        total = sum(cardPoints)
+        
+        window = n - k
+
+        #if you have to take all the cards (n == k)
+        if window == 0:
+            return total
+        running_sum = sum(cardPoints[:window])
+        min_sum = running_sum
+        
+        left = 0
+        for right in range(window, n):
+            running_sum += cardPoints[right]
+            running_sum -= cardPoints[left]
+            left += 1
+
+            min_sum = min(min_sum, running_sum)
+        
+        return total - min_sum
+        
